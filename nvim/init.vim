@@ -16,6 +16,10 @@ Plug 'vim-airline/vim-airline-themes'
 "" tab
 Plug 'romgrk/barbar.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+"" color scheme
+Plug 'sainnhe/gruvbox-material'
+"" multi cursor
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 "" config
@@ -100,8 +104,8 @@ let g:netrw_sidebar_loaded = 1
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
+"let g:netrw_altv = 1
+let g:netrw_winsize = 17
 function! ToggleVExplorer()
   if exists("t:expl_buf_num")
       let expl_win_num = bufwinnr(t:expl_buf_num)
@@ -142,6 +146,36 @@ nnoremap <silent><M-9> <Cmd>BufferGoto 9<CR>
 nnoremap <silent><M-0> <Cmd>BufferLast<CR>
 nmap <leader>w <Cmd>BufferClose<CR>
 
+"" multiple cursor
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-b>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-b>'
+let g:multi_cursor_select_all_key      = 'g<A-b>'
+let g:multi_cursor_next_key            = '<C-b>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+"" color scheme
+" For dark version.
+set background=dark
+
+" For light version.
+"set background=light
+
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'soft'
+
+" For better performance
+let g:gruvbox_material_better_performance = 1
+
+colorscheme gruvbox-material
+let g:airline_theme = 'gruvbox_material'
 "" lua
 lua << EOF
         
