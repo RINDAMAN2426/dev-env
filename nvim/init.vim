@@ -1,182 +1,162 @@
-call plug#begin()
 
-"" PluginList
-"" fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-"" leap
-Plug 'ggandor/leap.nvim'
-"" LSP
-Plug 'neoclide/coc.nvim', { 'branch': 'release'}
-"" treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"" air-line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-"" tab
-Plug 'romgrk/barbar.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-"" color scheme
-Plug 'sainnhe/gruvbox-material'
-"" multi cursor
-Plug 'terryma/vim-multiple-cursors'
+set clipboard+=unnamedplus
+set completeopt=noinsert,menuone,noselect " Modifies the auto-complete menu to behave more like an IDE.
+set cursorline " Highlights the current line in the editor
+set hidden " Hide unused buffers
+set autoindent " Indent a new line
+set inccommand=split " Show replacements in a split screen
+set mouse=a " Allow to use the mouse in the editor
+set relativenumber " Shows the line numbers
+set splitbelow splitright " Change the split screen behavior
+set title " Show file title
+set wildmenu " Show a more advance menu
+"set cc=80 " Show at 80 column a border for good code style
+filetype plugin indent on   " Allow auto-indenting depending on file type
+syntax on
+highlight LineNr guifg=white
+set spell " enable spell check (may need to download language package)
+set ttyfast " Speed up scrolling in Vim
+set omnifunc=syntaxcomplete#Complete "omni auto suggestion
+
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+
+  Plug 'rebelot/kanagawa.nvim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'tpope/vim-fugitive'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'romgrk/barbar.nvim'
+
+  " fzf.vim: Fuzzy Finder
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+
+  Plug 'sheerun/vim-polyglot'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+  " wildemenu plugin - wilder
+  if has('nvim')
+    function! UpdateRemotePlugins(...)
+      " Needed to refresh runtime files
+      let &rtp=&rtp
+      UpdateRemotePlugins
+    endfunction
+
+    Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+  else
+    Plug 'gelguy/wilder.nvim'
+
+    " To use Python remote plugin features in Vim, can be skipped
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+
+  endif
 
 call plug#end()
-"" config
-set number
-set encoding=utf8
-set autoindent
-set smartindent
-set guicursor+=n:underline
-set expandtab
-set et
-"" commands
-command -nargs=0 CPP "let @* = expand('%')"
 
-"" > mapping
-"" save
-nnoremap <C-s> :w<cr>
-"" fuzzy
-nnoremap <C-P> :Files<CR>
-"" netwr
-nnoremap <C-o> :Explorer<CR>
-"" leap
-nmap <leader>f <Plug>(leap-forward)
-nmap <leader>F <Plug>(leap-backward)
-"" coc
-" Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
+colorscheme kanagawa
+" airline configs
+let g:bargreybars_auto=0
+let g:airline_solorized_bg='dark'
+let g:airline_powerline_fonts=1
+let g:airline#extension#tabline#enable=0
+let g:airline#extension#tabline#left_sep=' '
+let g:airline#extension#tabline#left_alt_sep='|'
+let g:airline#extension#tabline#formatter='unique_tail'
+
+" coc configs
+let g:coc_global_extensions = ['coc-highlight', 'coc-prettier']
+call extend(g:coc_global_extensions, ['coc-tsserver', 'coc-eslint'])
+call extend(g:coc_global_extensions, ['coc-css', 'coc-html', 'coc-styled-components'])
+call extend(g:coc_global_extensions, ['coc-json', 'coc-yaml'])
+call extend(g:coc_global_extensions, ['coc-biome'])
+
+" wilder 
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'next_key': '<Tab>',
+      \ 'previous_key': '<S-Tab>',
+      \ 'accept_key': '<Down>',
+      \ 'reject_key': '<Up>',
+      \ })
+" 'border'            : 'single', 'double', 'rounded' or 'solid'
+"                     : can also be a list of 8 characters,
+"                     : see :h wilder#popupmenu_border_theme() for more details
+" 'highlights.border' : highlight to use for the border`
+call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+      \ 'highlights': {
+      \   'border': 'Normal',
+      \ },
+      \ 'border': 'rounded',
+      \ })))
+
+" maps
+nnoremap <C-f> :RG<CR>
+vnoremap <C-n> :norm  
+
+nnoremap <leader>x "_x
+nnoremap <leader>d "_d
+nnoremap <leader>D "_D
+vnoremap <leader>d "_d
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>ccs <Plug>(coc-codeaction-selected)w
+nmap <silent> gl :CocDiagnostics<CR>
+nmap <leader>caf :CocCommand eslint.executeAutofix<CR>
+nmap <leader>cff :CocCommand prettier.formatFile<CR>
+
+" tabs
+nmap <leader>] <Cmd>BufferNext<CR>
+nmap <leader>[ <Cmd>BufferPrevious<CR>
+nmap <leader>p <Cmd>BufferPick<CR>
+nmap <leader>bc <Cmd>BufferClose<CR>
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
-" delays and poor user experience
-set updatetime=300
+nmap <silent> gh :call CocAction('doHover')<CR>
+nmap <space>rn <Plug>(coc-rename)
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config
+" >> Tab to Autocomplete
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+  \ coc#pum#visible()
+    \ ? coc#pum#next(1)
+    \ : CheckBackspace()
+      \ ? "\<Tab>"
+      \ : coc#refresh()
 
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <S-TAB>
+  \ coc#pum#visible()
+    \ ? coc#pum#prev(1)
+    \ : "\<C-h>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-"
-" File: netrw-sidebar.vim
-" Author: Jeffrey Hill <jeff@reverentengineer.com>
-"
-" Description: Creates a netrw sidebar
-"
+" reload
+nnoremap <silent> <Leader><Leader> :source $MYVIMRC<CR>
+" trigger suggestion
+inoremap <silent><expr> <C-g> coc#refresh()
 
-if exists('g:netrw_sidebar_loaded')
-  finish
-endif
-let g:netrw_sidebar_loaded = 1
+nnoremap<C-S> :w<CR>
+nnoremap<C-O> :Lexplore<CR>
 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-let g:netrw_winsize = 17
-function! ToggleVExplorer()
-  if exists("t:expl_buf_num")
-      let expl_win_num = bufwinnr(t:expl_buf_num)
-      if expl_win_num != -1
-          let cur_win_nr = winnr()
-          exec expl_win_num . 'wincmd w'
-          close
-          exec cur_win_nr . 'wincmd w'
-          unlet t:expl_buf_num
-      else
-          unlet t:expl_buf_num
-      endif
-  else
-      exec '1wincmd w'
-      Vexplore
-      let t:expl_buf_num = bufnr("%")
-  endif
-endfunction
-map <silent> <leader>e :call ToggleVExplorer()<CR>
+nnoremap<C-P> :Files<CR>
+highlight LineNr guifg=#eed3d9
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-"" buffer
-nmap <leader>] <Cmd>BufferNext<CR>
-nmap <leader>[ <Cmd>BufferPrevious<CR>
-nnoremap <leader>1 <Cmd>BufferGoto 1<CR>
-nnoremap <leader>2 <Cmd>BufferGoto 2<CR>
-nnoremap <silent><M-3> <Cmd>BufferGoto 3<CR>
-nnoremap <silent><M-4> <Cmd>BufferGoto 4<CR>
-nnoremap <silent><M-5> <Cmd>BufferGoto 5<CR>
-nnoremap <silent><M-6> <Cmd>BufferGoto 6<CR>
-nnoremap <silent><M-7> <Cmd>BufferGoto 7<CR>
-nnoremap <silent><M-8> <Cmd>BufferGoto 8<CR>
-nnoremap <silent><M-9> <Cmd>BufferGoto 9<CR>
-nnoremap <silent><M-0> <Cmd>BufferLast<CR>
-nmap <leader>w <Cmd>BufferClose<CR>
-
-"" multiple cursor
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-b>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-b>'
-let g:multi_cursor_select_all_key      = 'g<A-b>'
-let g:multi_cursor_next_key            = '<C-b>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-
-"" color scheme
-" For dark version.
-set background=dark
-
-" For light version.
-"set background=light
-
-" Set contrast.
-" This configuration option should be placed before `colorscheme gruvbox-material`.
-" Available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'soft'
-
-" For better performance
-let g:gruvbox_material_better_performance = 1
-
-colorscheme gruvbox-material
-let g:airline_theme = 'gruvbox_material'
-"" lua
+" lua
 lua << EOF
-        
+  require'bufferline'.setup()
 EOF
