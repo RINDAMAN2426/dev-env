@@ -2,6 +2,7 @@
 	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold red)%h%C(reset) : %C(bold green)(%ar)%C(reset) - %C(cyan)<%an>%C(reset)%C(bold yellow)%d%C(reset)%n%n%w(90,1,2)%C(white)%B%C(reset)%n'
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit
 	taglog = log --no-walk --tags --pretty=\"%C(bold blue)%h%Creset %C(bold yellow)%d%Creset %C( magenta)%s%Creset\"
+	cmt = commit
 	currb = rev-parse --abbrev-ref HEAD
 	sw = switch
 	swf = "!f() { git fetch && git checkout \"$@\"; }; f"
