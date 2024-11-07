@@ -1,18 +1,13 @@
-# 개발 환경 세팅 
+## 개발 환경 세팅 저장하기용
 
-## Share
+- package manager
+  - homebrew
 
-- homebrew
 - iterm
+  - neofetch
+  - starship
+  - tmux
+  - zshell
 
-## VSCODE
-
-- settings sync 이용
-
-## zsh
-
-- fig 이용 (Dotfile)
-
-## ETC
-
-- icloud 공유 (차차 변경해나가야함)
+- neovim
+  - lazy.vim(lua)
