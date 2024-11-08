@@ -8,6 +8,7 @@
   - starship
   - tmux
   - zshell
+  - colorscheme
 
 - neovim
   - lazy.vim(lua)
