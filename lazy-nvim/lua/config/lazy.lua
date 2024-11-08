@@ -26,12 +26,13 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-  defaults = {
-    version = false, -- always use the lastest git commit
-    -- version = "*", -- try installing the lastest stable version for plugins that support semver
-  },
-  checker = {
-    enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
-  },
+	defaults = {
+		version = false, -- always use the lastest git commit
+		-- version = "*", -- try installing the lastest stable version for plugins that support semver
+	},
+	checker = {
+		enabled = true, -- check for plugin updates periodically
+		notify = false, -- notify on update
+	},
 })
+
