@@ -29,6 +29,7 @@ map("n", "<C-f>", "<cmd>lua require('fzf-lua').live_grep()<CR>", opts)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 map("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 map("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
