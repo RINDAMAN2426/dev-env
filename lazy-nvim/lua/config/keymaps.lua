@@ -1,6 +1,5 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
--- set leader key to space in lazy.lua
 
 -- save
 map("n", "<C-s>", ":w<CR>", opts)
@@ -8,7 +7,7 @@ map("i", "<C-s>", "<ESC>:w<CR>a", opts)
 map("v", "<C-s>", "<ESC>:w<CR>gv", opts)
 
 -- nvimtree
-map("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
+map("n", "<C-o>", ":NvimTreeToggle<CR>", opts)
 
 -- bufferline
 for i = 1, 9 do
@@ -36,4 +35,19 @@ map("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", opts)
 map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", opts)
 map("n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", opts)
+
+-- comment
+-- gcc: line comment
+-- gbc: block comment
+-- v mode + gc : line comment
+-- v mode + gb : block comment
+
+-- which-key
+map("n", "<leader>?", "<cmd>lua require('which-key').show({global=false})<CR>", opts)
+
+-- mason
+map("n", "<leader>cm", "<cmd>:Mason<CR>", opts)
+
+-- gitlinker
+map("n", "<leader>gl", "<cmd>lua require('gitlinker').get_buf_range_url('n', { action_callback = require('gitlinker.actions').open_in_browser })<CR>", opts)
 
