@@ -1,14 +1,14 @@
-## 개발 환경 세팅 저장하기용
-
 - package manager
   - homebrew
 
 - iterm
   - neofetch
   - starship
-  - tmux
-  - zshell
+  - oh-my-zsh 
   - colorscheme
 
 - neovim
   - lazy.vim(lua)
+  - coc # deprecated
+
+- tmux
