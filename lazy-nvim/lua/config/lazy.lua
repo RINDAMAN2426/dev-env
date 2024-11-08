@@ -36,3 +36,12 @@ require("lazy").setup({
 	},
 })
 
+-- Show Dashboard only when opening Neovim without any files, such as when opening a directory
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() == 0 then
+      vim.cmd("Dashboard")
+    end
+  end
+})
+
