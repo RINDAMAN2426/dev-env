@@ -23,3 +23,6 @@ set.foldlevelstart = 99
 set.termguicolors = true
 set.background = 'light'
 
+-- buffer
+set.showtabline = 2
+set.laststatus = 2
