@@ -7,7 +7,7 @@ map("i", "<C-s>", "<ESC>:w<CR>a", opts)
 map("v", "<C-s>", "<ESC>:w<CR>gv", opts)
 
 -- nvimtree
-map("n", "<C-o>", ":NvimTreeToggle<CR>", opts)
+map("n", "<C-o>", ":NvimTreeFindFileToggle<CR>", opts)
 
 -- bufferline
 for i = 1, 9 do
