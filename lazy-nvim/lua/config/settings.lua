@@ -21,7 +21,7 @@ set.signcolumn = "yes"
 set.foldlevel = 99 -- 전체 폴드를 열어둔 상태
 set.foldlevelstart = 99
 set.termguicolors = true
-set.background = 'light'
+-- set.background = 'light'
 
 -- buffer
 set.showtabline = 2
