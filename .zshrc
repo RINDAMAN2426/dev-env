@@ -135,6 +135,9 @@ alias gst=git status
 alias gp=git pull
 alias gpr=git pull --rebase
 alias gP=git push
+alias rc=rustc
+alias ru=rustup
+alias cg=cargo
 
 export PATH="/opt/homebrew/opt/php@7.3/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@7.3/sbin:$PATH"
@@ -144,25 +147,8 @@ export PATH=/opt/homebrew/bin:/opt/homebrew/opt/php@7.3/sbin:/opt/homebrew/opt/p
 ## neofetch
 neofetch
 
+## nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# >>> auto load nvmrc >>>
-autoload -U add-zsh-hook
-
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use
-  elif [[ $(nvm version) != $(nvm version default)  ]]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-
-load-nvmrc
-# <<< auto load nvmrc <<<
-
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
