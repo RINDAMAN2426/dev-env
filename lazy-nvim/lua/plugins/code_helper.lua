@@ -61,6 +61,26 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
 
+      lspconf.rust_analyzer.setup({
+        settings = {
+          ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+          }
+        }
+      })
       lspconf.ts_ls.setup({})
       lspconf.eslint.setup({})
 
