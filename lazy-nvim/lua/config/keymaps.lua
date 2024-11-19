@@ -13,8 +13,8 @@ map("n", "<C-o>", ":NvimTreeFindFileToggle<CR>", opts)
 for i = 1, 9 do
   map("n", "<leader>" .. i, ":BufferLineGoToBuffer " .. i .. "<CR>", opts)
 end
-map("n", "<leader>p", ":BufferLineCyclePrev<CR>", opts)
-map("n", "<leader>n", ":BufferLineCycleNext<CR>", opts)
+map("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
+map("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
 map("n", "<leader>bc", ":BufferLineCloseOthers<CR>", opts)
 
 -- bbye
