@@ -25,10 +25,13 @@ return {
           end,
         },
         mapping = {
+          ["<C-t>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
           ["<Tab>"] = cmp.mapping.select_next_item(),
           ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-          ["<C-CR>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
+          ["<C-e>"] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+          }),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         },
         sources = cmp.config.sources({
