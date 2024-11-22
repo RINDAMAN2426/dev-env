@@ -84,8 +84,13 @@ return {
           }
         }
       })
-      lspconf.ts_ls.setup({})
+      lspconf.ts_ls.setup({
+        on_attach = function(client)
+          client.server_capabilities.documentFormattingProvider = false
+        end
+      })
       lspconf.eslint.setup({})
+      lspconf.biome.setup({})
 
     end
   },
@@ -93,6 +98,6 @@ return {
     "folke/trouble.nvim",
     opts = {},
     cmd = "Trouble",
-  }
+  },
 }
 
