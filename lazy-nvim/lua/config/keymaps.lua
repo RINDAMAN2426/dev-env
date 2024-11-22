@@ -31,6 +31,7 @@ map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 map("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 map("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+map("n", "qf", "<cmd>lua vim.lsp.buf.foramt()<CR>", opts)
 
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", opts)
 map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", opts)
