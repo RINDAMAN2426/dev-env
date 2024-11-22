@@ -10,7 +10,7 @@ return {
           update_cwd = true,
         },
         view = {
-          width = 30,
+          adaptive_size = true,
           side = "left",
         },
         renderer = {
