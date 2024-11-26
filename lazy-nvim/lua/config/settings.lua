@@ -1,5 +1,9 @@
 local set = vim.opt
 
+-- auto reload
+vim.o.autoread = true
+vim.cmd([[autocmd FocusGained,BufEnter * checktime]])
+
 -- general
 set.number = true
 set.relativenumber = true
