@@ -1,18 +1,26 @@
 return {
   {
-    "rebelot/kanagawa.nvim",
-    dependencies = { "akinsho/bufferline.nvim" },
+    "olimorris/onedarkpro.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("bufferline").setup({
-        options = {
-          separator_style = 'slant',
-        },
-      })
-      vim.cmd("colorscheme kanagawa-dragon")
+      vim.cmd("colorscheme onedark")
     end
   }
+  --{
+  --  "rebelot/kanagawa.nvim",
+  --  dependencies = { "akinsho/bufferline.nvim" },
+  --  lazy = false,
+  --  priority = 1000,
+  --  config = function()
+  --    require("bufferline").setup({
+  --      options = {
+  --        separator_style = 'slant',
+  --      },
+  --    })
+  --    vim.cmd("colorscheme kanagawa-dragon")
+  --  end
+  --}
   -- {
   --   "shaunsingh/nord.nvim",
   --   dependencies = { "akinsho/bufferline.nvim" },
