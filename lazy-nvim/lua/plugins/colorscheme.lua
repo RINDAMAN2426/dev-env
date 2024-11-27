@@ -1,10 +1,11 @@
 return {
   {
-    "olimorris/onedarkpro.nvim",
+    "ayu-theme/ayu-vim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme onedark")
+      vim.cmd("let ayucolor='mirage'")
+      vim.cmd("colorscheme ayu")
     end
   }
   --{
