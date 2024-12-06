@@ -138,12 +138,13 @@ alias gP=git push
 alias rc=rustc
 alias ru=rustup
 alias cg=cargo
-
-export PATH="/opt/homebrew/opt/php@7.3/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@7.3/sbin:$PATH"
+alias tf=terraform
 
 ## neofetch
 neofetch
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+## nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
