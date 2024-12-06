@@ -115,7 +115,7 @@ alias t="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias grep=rg
 alias cat=bat
 alias top=btm
-alias sed=sd
+# alias sed=sd
 alias cloc=tokei
 alias find=fd
 alias du=dust
@@ -139,6 +139,7 @@ alias rc=rustc
 alias ru=rustup
 alias cg=cargo
 alias tf=terraform
+alias awspf='export AWS_PROFILE=$(sed -n -E "s/\[(profile )?([^][]+)\]?\s*$/\2/p" ~/.aws/credentials ~/.aws/config | sort -rg | uniq | fzf)'
 
 ## neofetch
 neofetch
