@@ -100,6 +100,15 @@ return {
       lspconf.eslint.setup({})
       lspconf.biome.setup({})
       lspconf.terraformls.setup({})
+      lspconf.yamlls.setup({
+        settings = {
+          yaml = {
+            schemas = {
+              ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+            },
+          },
+        }
+      })
 
     end
   },
