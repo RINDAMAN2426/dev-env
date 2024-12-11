@@ -99,6 +99,7 @@ return {
       })
       lspconf.eslint.setup({})
       lspconf.biome.setup({})
+      lspconf.terraformls.setup({})
 
     end
   },
