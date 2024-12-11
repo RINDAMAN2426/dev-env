@@ -5,6 +5,14 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup({
+        actions = {
+          open_file = {
+            resize_window = true,
+            window_picker = {
+              enable = false,
+            },
+          },
+        },
         update_focused_file = {
           enable = true,
           update_cwd = true,
