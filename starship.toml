@@ -1,7 +1,13 @@
+format = """
+$username\
+$hostname\
+$directory\
+$all
+"""
+
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vimcmd_symbol = "[<](bold green)"
+success_symbol = "[\\$](white)"
+error_symbol = "[\\$](white)"
 
 [git_commit]
 tag_symbol = " tag "
