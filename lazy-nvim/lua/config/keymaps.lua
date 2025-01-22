@@ -33,7 +33,8 @@ map("n", "<leader>q", ":Bdelete<CR>", opts)
 
 -- fzf
 map("n", "<C-p>", "<cmd>lua require('fzf-lua').files()<CR>", opts)
-map("n", "<C-f>", "<cmd>lua require('fzf-lua').live_grep()<CR>", opts)
+map("n", "<C-k>", "<cmd>lua require('fzf-lua').live_grep()<CR>", opts)
+map("n", "<C-f>", "<cmd>lua require('fzf-lua').live_grep_resume()<CR>", opts)
 
 -- lsp
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -53,12 +54,6 @@ map("n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<C
 -- gbc: block comment
 -- v mode + gc : line comment
 -- v mode + gb : block comment
-
--- which-key
-map("n", "<leader>?", "<cmd>lua require('which-key').show({global=false})<CR>", opts)
-
--- mason
-map("n", "<leader>cm", "<cmd>:Mason<CR>", opts)
 
 -- gitlinker
 map("n", "<leader>gl", "<cmd>lua require('gitlinker').get_buf_range_url('n', { action_callback = require('gitlinker.actions').open_in_browser })<CR>", opts)

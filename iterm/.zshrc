@@ -9,6 +9,9 @@ eval "$(zoxide init zsh)"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# vim
+export MYVIMRC=~/.config/nvim/init.lua
+
 export LD_LIBRARY_PATH="/usr/lib:/usr/local/lib:/opt/homebrew/lib"
 export LDFLAGS="-L/opt/homebrew/opt/php@7.3/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/php@7.3/include"
