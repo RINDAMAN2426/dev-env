@@ -6,11 +6,12 @@ map("n", "x", '"_d', opts);
 map("n", "d", '"_d', opts);
 map("n", "D", '"_d', opts);
 map("v", "d", '"_d', opts);
+map("n", "p", '"_dP', opts);
 
 -- unuse blackhole register
-map("n", "<leader>d", '""d', opts);
-map("n", "<leader>D", '""D', opts);
-map("v", "<leader>d", '""d', opts);
+map("n", "<leader>d", '"d', opts);
+map("n", "<leader>D", '"D', opts);
+map("v", "<leader>d", '"d', opts);
 
 -- save
 map("n", "<C-s>", ":w<CR>", opts)
