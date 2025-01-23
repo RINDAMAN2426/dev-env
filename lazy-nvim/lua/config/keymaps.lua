@@ -33,7 +33,7 @@ map("n", "<leader>q", ":Bdelete<CR>", opts)
 
 -- fzf
 map("n", "<C-p>", "<cmd>lua require('fzf-lua').files()<CR>", opts)
-map("n", "<C-k>", "<cmd>lua require('fzf-lua').live_grep()<CR>", opts)
+map("n", "<C-g>", "<cmd>lua require('fzf-lua').live_grep()<CR>", opts)
 map("n", "<C-f>", "<cmd>lua require('fzf-lua').live_grep_resume()<CR>", opts)
 
 -- lsp
