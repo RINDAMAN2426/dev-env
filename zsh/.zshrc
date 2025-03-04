@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 alias lg=lazygit
 alias tf=terraform
 alias asp='export AWS_PROFILE=$(aws configure list-profiles | sort | fzf --height=~10)'
+alias k=kubectl
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(starship init zsh)"
@@ -113,3 +114,6 @@ eval "$(zoxide init zsh)"
 export NVM_DIR="$HOME/.nvim"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+## neofetch
+neofetch
