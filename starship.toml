@@ -85,6 +85,7 @@ symbol = "git "
 
 [golang]
 symbol = "go "
+disabled = true
 
 [gradle]
 symbol = "gradle "
@@ -108,7 +109,8 @@ symbol = "kt "
 symbol = "lua "
 
 [nodejs]
-symbol = "nodejs "
+format = '[$symbol$version]($style) '
+symbol = "node "
 
 [memory_usage]
 symbol = "memory "
@@ -173,6 +175,7 @@ Windows = "win "
 
 [package]
 symbol = "pkg "
+disabled = true
 
 [perl]
 symbol = "pl "
@@ -190,6 +193,7 @@ symbol = "pulumi "
 symbol = "purs "
 
 [python]
+format = '[$symbol$version]($style) '
 symbol = "py "
 
 [raku]
@@ -220,7 +224,7 @@ symbol = "sudo "
 symbol = "swift "
 
 [terraform]
-format = 'via [$symbol $version $workspace]($style) '
+format = '[$symbol $version $workspace]($style) '
 symbol = "terraform "
 
 [zig]
@@ -231,3 +235,5 @@ format = '[k8s on $context]($style) '
 style = 'red'
 disabled = false
 
+[line_break]
+disabled = false
