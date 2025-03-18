@@ -3,21 +3,17 @@
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit
 	taglog = log --no-walk --tags --pretty=\"%C(bold blue)%h%Creset %C(bold yellow)%d%Creset %C( magenta)%s%Creset\"
 	cmt = commit
-	currb = rev-parse --abbrev-ref HEAD
+	cbp = "!f() { git branch --show-current | tr -d \"\n\" | pbcopy; }; f"
 	sw = switch
 	swf = "!f() { git fetch && git checkout \"$@\"; }; f"
 	swp = "!f() { git checkout \"$@\" && git pull --rebase; }; f"
 	pre = pull --rebase
 	rmall = "!f() { git branch | grep -v "main" | xargs git branch -D; }; f"
 	rmg = "!git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
+	swb = !git branch | sed \"s/^[ *]*//\" | fzf --height 10% --select-1 --exit-0 | xargs -r git switch
+
 [user]
-	email = brouk.develop@gmail.com
 	name = RINDAMAN2426
-[commit]
-	template = ~/.gitcommittemplate
-[push]
-	autoSetupRemote = true
-[rerere]
-	enabled = true
+	email = brouk.develop@gmail.com
 [core]
 	editor = /opt/homebrew/bin/nvim
