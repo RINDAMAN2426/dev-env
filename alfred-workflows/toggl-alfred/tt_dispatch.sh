@@ -13,4 +13,4 @@ else
   output="❌ Invalid command: $ACTION"
 fi
 
-echo $output
+echo "$output"
