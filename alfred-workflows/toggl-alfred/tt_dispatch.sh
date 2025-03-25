@@ -1,6 +1,6 @@
-ACTION="$1"
-ARGUMENT="$2"
-
+INPUT="$*"
+ACTION=$(echo "$INPUT" | awk '{print $1}')
+ARGUMENT=$(echo "$INPUT" | cut -d' ' -f2-)
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ "$ACTION" = "start" ]; then
