@@ -8,7 +8,7 @@
 	swf = "!f() { git fetch && git checkout \"$@\"; }; f"
 	swp = "!f() { git checkout \"$@\" && git pull --rebase; }; f"
 	pre = pull --rebase
-	rmall = "!f() { git branch | grep -v "main" | xargs git branch -D; }; f"
+	rma = "!f() { curr=$(git branch --show-current); git branch | grep -vE \"^\\\\*|main|master|$curr\" | xargs git branch -D; }; f"
 	rmg = "!git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
 	swb = !git branch | sed \"s/^[ *]*//\" | fzf --height 10% --select-1 --exit-0 | xargs -r git switch
 
