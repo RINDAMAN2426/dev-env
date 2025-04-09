@@ -11,6 +11,13 @@
 	rma = "!f() { curr=$(git branch --show-current); git branch | grep -vE \"^\\\\*|main|master|$curr\" | xargs git branch -D; }; f"
 	rmg = "!git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
 	swb = !git branch | sed \"s/^[ *]*//\" | fzf --height 10% --select-1 --exit-0 | xargs -r git switch
+	mrg = "!f() { \
+			current=$(git rev-parse --abbrev-ref HEAD); \
+			target=$(git branch --list | grep -v \"\\* $current\" | sed 's/^..//' | fzf --prompt=\"Merge into $current > \"); \
+			[ -z \"$target\" ] && echo 'No branch selected.' && exit 1; \
+			echo \"Merging $target into $current...\"; \
+			git merge \"$target\"; \
+		}; f"
 
 [user]
 	name = RINDAMAN2426
