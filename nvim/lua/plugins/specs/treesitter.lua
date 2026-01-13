@@ -23,7 +23,7 @@ return {
         pattern = {
           "lua", "vim", "bash",
           "javascript", "typescript", "typescriptreact",
-          "python", "json", "jsonc", "css", "html",
+          "python", "json", "css", "html", "jsonc",
           "terraform", "hcl", "dockerfile",
           "yaml", "xml", "toml", "graphql", "sql",
           "markdown",
