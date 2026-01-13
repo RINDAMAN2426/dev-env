@@ -1,7 +1,6 @@
 require("core.colors").setup()
 require("core.options")
-require("plugins.manager")
 require("core.ui")
+require("plugins.manager")
 require("core.lsp")
 require("core.keymaps")
-
