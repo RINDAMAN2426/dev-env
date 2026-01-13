@@ -207,3 +207,198 @@ Neotest-mocha will automatically detect your Mocha configuration:
 - Command-line arguments via `command_args`
 
 The adapter uses JSON reporter to parse test results and integrates with Neotest's UI.
+
+## LSP & Code Actions
+
+### Code Actions
+Quick fixes, refactorings, and code improvements suggested by your LSP server.
+
+#### Usage
+1. Place cursor on code with suggestions (look for lightbulb 💡 or diagnostic)
+2. Press `<leader>ca` to open code action menu
+3. Select action with `j/k` and `<CR>` to apply
+
+#### Common Code Actions
+- **Auto-import** - Add missing imports
+- **Quick fix** - Fix linter/compiler errors
+- **Extract** - Extract to function/variable
+- **Organize imports** - Sort and remove unused imports
+- **Generate** - Generate getters/setters/constructors
+- **Refactor** - Rename, move, inline, etc.
+
+### LSP Keymaps
+
+| Key | Description | Example Use Case |
+|-----|-------------|------------------|
+| `<leader>ca` | Code action | Fix import, extract function |
+| `<leader>rn` | Rename symbol | Rename variable across files |
+| `<leader>fm` | Format buffer | Auto-format code |
+| `gd` | Go to definition | Jump to function definition |
+| `gD` | Go to declaration | Jump to interface declaration |
+| `gr` | Find references | See all usages |
+| `gi` | Go to implementation | Jump to implementation |
+| `K` | Hover documentation | Show type info |
+| `<leader>k` | Signature help | Show function parameters |
+| `gl` | Show diagnostic | Show error details |
+| `[d` | Previous diagnostic | Jump to previous error |
+| `]d` | Next diagnostic | Jump to next error |
+
+### Code Action Examples
+
+#### Auto-import (JavaScript/TypeScript)
+```javascript
+// Cursor on 'useState' with no import
+const [count, setCount] = useState(0);
+//                         ^^^^^^^^ undefined
+
+// Press <leader>ca
+// Select: "Add import from 'react'"
+// Result:
+import { useState } from 'react';
+```
+
+#### Quick fix (Python)
+```python
+# Cursor on undefined variable
+print(messge)  # Typo!
+#     ^^^^^^^ NameError
+
+# Press <leader>ca
+# Select: "Change to 'message'"
+# Or: "Add 'messge = ...'
+```
+
+#### Extract function
+```javascript
+// Select code block in visual mode
+const total = items.reduce((sum, item) => sum + item.price, 0);
+const tax = total * 0.1;
+const final = total + tax;
+
+// Press <leader>ca
+// Select: "Extract to function"
+// Result:
+function calculateTotal(items) {
+  const total = items.reduce((sum, item) => sum + item.price, 0);
+  const tax = total * 0.1;
+  return total + tax;
+}
+```
+
+### Biome Integration
+
+Since Biome LSP is configured, you get additional actions:
+
+- **Fix all** - Apply all safe fixes
+- **Organize imports** - Sort and group imports
+- **Remove unused** - Remove unused variables
+- **Format** - Format with Biome rules
+
+Press `<leader>ca` on any file to see available Biome actions.
+
+### Tips
+
+#### Quick Fix Workflow
+```vim
+" 1. Jump to diagnostic
+]d
+
+" 2. See error details
+gl
+
+" 3. Apply fix
+<leader>ca
+
+" 4. Next error
+]d
+```
+
+#### Bulk Refactoring
+```vim
+" 1. Rename symbol
+<leader>rn
+
+" 2. Type new name
+newFunctionName<CR>
+
+" 3. All references updated across workspace!
+```
+
+#### Format on Save
+Already configured in LSP setup - saves automatically format if LSP supports it.
+
+## Quick Reference
+
+### All Keymaps Summary
+
+#### File & Navigation
+- `<leader>p` - Git files
+- `<leader>fp` - Find files
+- `<leader>ff` - Live grep (search text)
+- `<leader>fb` - Buffers
+- `<leader>b` - Toggle file explorer
+- `<leader>]` / `<leader>[` - Next/Previous buffer
+- `<leader>x` - Close buffer
+- `<C-s>` - Save file
+
+#### LSP & Code
+- `<leader>ca` - **Code action** 💡
+- `<leader>rn` - Rename
+- `<leader>fm` - Format
+- `gd` / `gD` - Definition / Declaration
+- `gr` / `gi` - References / Implementation
+- `K` - Hover
+- `gl` - Show diagnostic
+- `[d` / `]d` - Prev/Next diagnostic
+
+#### Testing (Neotest)
+- `<leader>ts` - Test summary
+- `<leader>tt` - Test file
+- `<leader>tr` - Test nearest
+- `<leader>tl` - Test last
+- `<leader>tc` - **Reload for monorepo**
+
+#### Diagnostics (Trouble)
+- `<leader>dx` - All diagnostics
+- `<leader>dw` - Buffer diagnostics
+- `<leader>dl` - Location list
+- `<leader>dq` - Quickfix list
+
+### Workflow Examples
+
+#### New to codebase
+```vim
+<leader>p          " Find file in git
+gd                 " Go to definition
+gr                 " See all usages
+K                  " Read documentation
+```
+
+#### Fix errors
+```vim
+<leader>dx         " Open diagnostics
+]d                 " Next error
+<leader>ca         " Apply fix
+<leader>fm         " Format
+```
+
+#### Test driven development
+```vim
+:cd backend/service
+<leader>tc         " Set test root
+<leader>ts         " Open test summary
+<leader>tw         " Watch mode ON
+" Edit code, tests auto-run!
+```
+
+#### Refactoring
+```vim
+<leader>rn         " Rename variable
+<leader>ca         " Extract function
+<leader>fm         " Format code
+:w                 " Save
+```
+
+---
+
+**Happy coding! 🚀**

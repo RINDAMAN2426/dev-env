@@ -162,3 +162,59 @@ vim.keymap.set("n", "<leader>tc", function()
 end, {
   desc = "Reload Neotest for CWD"
 })
+
+-- ============================================================================
+-- LSP & Diagnostics
+-- ============================================================================
+
+-- Diagnostics navigation
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {
+  desc = "Previous Diagnostic"
+})
+
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, {
+  desc = "Next Diagnostic"
+})
+
+vim.keymap.set("n", "gl", vim.diagnostic.open_float, {
+  desc = "Show Diagnostic"
+})
+
+-- LSP keymaps (attached when LSP is available)
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(args)
+    local opts = { buffer = args.buf }
+    
+    -- Navigation
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, {
+      desc = "Go to Declaration"
+    }))
+    
+    -- Hover
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, {
+      desc = "Hover Documentation"
+    }))
+    
+    vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, {
+      desc = "Signature Help"
+    }))
+    
+    -- Code Actions
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, {
+      desc = "Code Action"
+    }))
+    
+    -- Refactoring
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, {
+      desc = "Rename Symbol"
+    }))
+    
+    -- Formatting
+    vim.keymap.set("n", "<leader>fm", function()
+      vim.lsp.buf.format({ async = true })
+    end, vim.tbl_extend("force", opts, {
+      desc = "Format Buffer"
+    }))
+  end,
+})
