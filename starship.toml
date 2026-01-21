@@ -22,7 +22,7 @@ only_detached = true
 
 [git_status]
 format = '([$all_status$ahead_behind]($style) )'
-style = 'bold yellow'
+style = 'yellow'
 ahead = ">"
 behind = "<"
 diverged = "<>"
@@ -31,7 +31,7 @@ deleted = "x"
 
 [aws]
 format = 'on [$symbol$profile]($style) '
-style = 'bold blue'
+style = 'blue'
 symbol = "aws "
 [aws.profile_aliases]
 Enterprise_Naming_Scheme-voidstars = 'void**'
@@ -71,6 +71,7 @@ symbol = ".NET "
 
 [directory]
 read_only = " ro"
+style = "#bd93f9"
 
 [docker_context]
 symbol = "docker "
@@ -92,7 +93,7 @@ symbol = "gcp "
 
 [git_branch]
 symbol = "git "
-style = "bold white"
+style = "white"
 
 [golang]
 symbol = "go "
@@ -226,7 +227,7 @@ symbol = "spack "
 symbol = "solidity "
 
 [status]
-symbol = "[x](bold red) "
+symbol = "[x](red) "
 
 [sudo]
 symbol = "sudo "
