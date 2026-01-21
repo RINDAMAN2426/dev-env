@@ -20,14 +20,22 @@ error_symbol = "[\\$](white)"
 tag_symbol = " tag "
 only_detached = true
 
+[git_branch]
+symbol = "git "
+style = "#8be9fd"
+
 [git_status]
-format = '([$all_status$ahead_behind]($style) )'
-style = 'yellow'
-ahead = ">"
-behind = "<"
-diverged = "<>"
-renamed = "r"
-deleted = "x"
+style = "white"
+conflicted = "[=](red)"
+ahead = "[⇡](green)"
+behind = "[⇣](yellow)"
+diverged = "[⇕](red)"
+untracked = "[?](blue)"
+stashed = "[$](purple)"
+modified = "[!](yellow)"
+staged = "[+](green)"
+renamed = "[»](blue)"
+deleted = "[✘](red)"
 
 [aws]
 format = 'on [$symbol$profile]($style) '
@@ -90,10 +98,6 @@ symbol = "fossil "
 
 [gcloud]
 symbol = "gcp "
-
-[git_branch]
-symbol = "git "
-style = "white"
 
 [golang]
 symbol = "go "
