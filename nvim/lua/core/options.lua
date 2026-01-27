@@ -46,7 +46,7 @@ vim.diagnostic.config({
 })
 
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.opt.foldlevel = 99        -- 기본은 전부 펼쳐진 상태
 vim.opt.foldlevelstart = 99

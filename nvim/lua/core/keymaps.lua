@@ -8,15 +8,56 @@ vim.keymap.set("n", "<leader>x", "<cmd>bp<bar>sp<bar>bn<bar>bd<cr>", {
   desc = "Close Current Buffer"
 })
 
+-- exit terminal
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
+vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h", { silent = true })
+vim.keymap.set('t', '<C-w>j', "<C-\\><C-n><C-w>j", { silent = true })
+vim.keymap.set('t', '<C-w>k', "<C-\\><C-n><C-w>k", { silent = true })
+vim.keymap.set('t', '<C-w>l', "<C-\\><C-n><C-w>l", { silent = true })
+
+-- ============================================================================
+-- Folding (scope-based, non-conflicting)
+-- ============================================================================
+
+-- Toggle fold under cursor
+vim.keymap.set("n", "<leader>za", "za", {
+  desc = "Toggle fold (cursor)",
+})
+
+-- Close fold under cursor
+vim.keymap.set("n", "<leader>zc", "zc", {
+  desc = "Close fold (cursor)",
+})
+
+-- Open fold under cursor
+vim.keymap.set("n", "<leader>zo", "zo", {
+  desc = "Open fold (cursor)",
+})
+
+-- Close all folds
+vim.keymap.set("n", "<leader>zC", "zM", {
+  desc = "Close all folds",
+})
+
+-- Open all folds
+vim.keymap.set("n", "<leader>zO", "zR", {
+  desc = "Open all folds",
+})
+
+-- Close folds except current scope
+vim.keymap.set("n", "<leader>zs", "zMzv", {
+  desc = "Focus current scope (fold others)",
+})
+
 -- ============================================================================
 -- Telescope
 -- ============================================================================
 
-vim.keymap.set("n", "<leader>p", "<cmd>Telescope git_files<cr>", {
+vim.keymap.set("n", "<leader>p", "<cmd>Telescope find_files<cr>", {
   desc = "Git Files"
 })
 
-vim.keymap.set("n", "<leader>fp", "<cmd>Telescope find_files<cr>", {
+vim.keymap.set("n", "<leader>fp", "<cmd>Telescope git_files<cr>", {
   desc = "Find Files"
 })
 
@@ -218,3 +259,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
     }))
   end,
 })
+

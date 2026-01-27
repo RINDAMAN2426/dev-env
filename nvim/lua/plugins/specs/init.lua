@@ -6,6 +6,7 @@ return {
   { import = "plugins.specs.git" },
   { import = "plugins.specs.lsp" },
   { import = "plugins.specs.neotest" },
+  { import = "plugins.specs.opencode" },
   { import = "plugins.specs.telescope" },
   { import = "plugins.specs.treesitter" },
   { import = "plugins.specs.ui" },
