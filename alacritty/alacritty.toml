@@ -1,6 +1,15 @@
 [env]
 TERM = "xterm-256color"
 
+[general]
+import = [
+  "~/.config/alacritty/themes/themes/dracula_plus.toml"
+]
+
+[cursor]
+style.shape = "Underline"
+style.blinking = "Always"
+
 [window]
 startup_mode = "Maximized"
 decorations = "None"
@@ -14,11 +23,12 @@ multiplier = 3
 hide_when_typing = true
 
 [font]
-size = 11.25
+size = 11.50
 
 [font.normal]
-# family = "MesloLGL Nerd Font Mono"
+#family = "MesloLGL Nerd Font Mono"
 family = "BitstromWera Nerd Font Mono"
+#family = "SFMono Nerd Font"
 style = "Regular"
 
 [font.offset]
