@@ -3,10 +3,9 @@ local act = wezterm.action
 
 local config = wezterm.config_builder()
 
-config.color_scheme = 'Gruvbox Dark (Gogh)'
+config.color_scheme = 'Github Dark'
 config.hide_tab_bar_if_only_one_tab = true
-wezterm.font("Rec Mono Casual", {weight="Regular", stretch="Normal", style="Normal"})
-config.font = wezterm.font 'Rec Mono Casual'
+config.font = wezterm.font "JetBrains Mono"
 config.window_decorations = 'RESIZE'
 
 config.keys = {
