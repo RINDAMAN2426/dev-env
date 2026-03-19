@@ -3,10 +3,11 @@ local act = wezterm.action
 
 local config = wezterm.config_builder()
 
-config.color_scheme = 'Github Dark'
+config.color_scheme = 'Github Dark (Gogh)'
 config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font "JetBrains Mono"
 config.window_decorations = 'RESIZE'
+config.enable_kitty_keyboard = os.getenv("TMUX") == nil and true or false
 
 config.keys = {
   -- Rebind OPT-Left, OPT-Right as ALT-b, ALT-f respectively to match Terminal.app behavior
@@ -23,6 +24,11 @@ config.keys = {
     mods = 'OPT',
     action = act.SendKey { key = 'f', mods = 'ALT' },
   },
+  {
+    key = 'Enter',
+    mods = 'SHIFT',
+    action = act.SendString '\x1b\r',  -- ESC + CR
+  }
 }
 
 return config
