@@ -3,9 +3,9 @@ local act = wezterm.action
 
 local config = wezterm.config_builder()
 
-config.color_scheme = 'Github Dark (Gogh)'
+config.color_scheme = 'Material (base16)'
 config.hide_tab_bar_if_only_one_tab = true
-config.font = wezterm.font "JetBrains Mono"
+config.font = wezterm.font('JetBrains Mono', { weight = 'Light' })
 config.window_decorations = 'RESIZE'
 config.enable_kitty_keyboard = os.getenv("TMUX") == nil and true or false
 
