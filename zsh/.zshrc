@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/bin:$PATH:$HOME/bin:$HOME/.local/bin"
 
 # zsh opts (minimal)
 setopt AUTO_CD
@@ -21,16 +21,36 @@ source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias v=nvim
 alias lg=lazygit
 alias tf=terraform
-alias asp='export AWS_PROFILE=$(aws configure list-profiles | sort | fzf --height=~10)'
 alias k=kubectl
-alias gcb='git branch --show-current | tr -d "\n" | pbcopy'
+alias ld=lazydocker
+alias t=tmux
+alias cld=claude
+alias dkrup='open /Applications/Docker.app'
+alias dkr=docker
+alias p=pnpm
+alias cldd='claude --dangerously-skip-permissions' 
 
+# third parties
 eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
-## nvim
+# nvim
 export NVM_DIR="$HOME/.nvim"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+function asp() {
+  local profile
+  profile=$(aws configure list-profiles | sort | fzf --height=10 --prompt="Select AWS_PROFILE: ") || return
+
+  if [[ -n "$profile" ]]; then
+    export AWS_PROFILE="$profile"
+    echo "✅ AWS_PROFILE set to: $AWS_PROFILE"
+    echo "🔐 Logging in with SSO..."
+    aws sso login --profile "$AWS_PROFILE"
+  else
+    echo "❌ No profile selected."
+  fi
+}
